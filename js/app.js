@@ -17,13 +17,15 @@
  * Define Global Variables
  * 
 */
-let sectionNumber=4;
+let sectionNumber = 4;
 const addSectionButton = document.querySelector(".add__btn");
 const navbarList = document.querySelector("#navbar__list");
-let listItems=document.getElementsByClassName("item");
-const activeMenuItem=document.getElementsByClassName("item menu__active");
-const topButton=document.querySelector(".top__btn");
-
+let listItems = document.getElementsByClassName("item");
+const activeMenuItem = document.getElementsByClassName("item menu__active");
+const topButton = document.querySelector(".top__btn");
+let sections = document.querySelectorAll(".section");
+//flag for onscrell event
+let scrollinglag = false;
 /**
  * End Global Variables
  * Start Helper Functions
@@ -49,26 +51,38 @@ const topButton=document.querySelector(".top__btn");
  * Begin Events
  *
 */
+
 document.addEventListener("DOMContentLoaded", loadEventListeners);
+onscroll = () => {
+  var currentScroll = document.documentElement.scrollTop;
+  sections.forEach(function (section) {
+    if (currentScroll >= (section.offsetTop) - 150 && currentScroll <= section.offsetTop + section.offsetHeight / 2) {
+      const currentSectionID = section.getAttribute("id");
+      activeMenuItem[0].className = activeMenuItem[0].className.replace('menu__active', "");
+      document.querySelector(`.${currentSectionID}`).classList.add("menu__active");
+    }
+  });
+}
+
 function loadEventListeners() {
+
   addSectionButton.addEventListener('click', addSection);
-  for(var i=0;i<navbarList.childElementCount;i++)
-    listItems[i].addEventListener('click',addActiveMenu);
-    topButton.addEventListener('click',topToHeader) ;
-    window.onscroll=function(e){
-      console.log(document.getElementById("section2").scrollTop);
-    };
+  for (var i = 0; i < navbarList.childElementCount; i++)
+    listItems[i].addEventListener('click', addActiveMenu);
+  topButton.addEventListener('click', topToHeader);
+
 }
 // Build menu  and section 
 function addSection() {
-  const newItem=document.createElement("li");
-  newItem.innerHTML=`section ${sectionNumber}`;
-  newItem.className=`item section${sectionNumber}`;
+  const newItem = document.createElement("li");
+  newItem.innerHTML = `section ${sectionNumber}`;
+  newItem.className = `item section${sectionNumber}`;
   navbarList.appendChild(newItem);
-  const newSection=document.createElement("section");
-  newSection.setAttribute("id",`section${sectionNumber}`);
-  let sectionContent=
-  `<div class="landing__container">
+  const newSection = document.createElement("section");
+  newSection.setAttribute("id", `section${sectionNumber}`);
+  newSection.className = "section";
+  let sectionContent =
+    `<div class="landing__container">
   <h2>Section ${sectionNumber}</h2>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra
     dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus
@@ -82,19 +96,22 @@ function addSection() {
     luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur
     porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.</p>
   </div>`;
-  newSection.innerHTML=sectionContent;
+  newSection.innerHTML = sectionContent;
   sectionNumber++;
   document.querySelector("main").appendChild(newSection);
-  listItems[navbarList.childElementCount-1].addEventListener('click',addActiveMenu);
+  listItems[navbarList.childElementCount - 1].addEventListener('click', addActiveMenu);
+  sections = document.querySelectorAll(".section");
+  console.log(sections);
+  console.log(newSection)
 }
 // Set menu as active And Scroll to section on link click
-function addActiveMenu(e){
- const sec=document.getElementById(e.target.classList[1]);
- sec.scrollIntoView({behavior:'smooth'})
-  activeMenuItem[0].className=activeMenuItem[0].className.replace('menu__active',"");
-  e.target.className+=' menu__active';
+function addActiveMenu(e) {
+  const sec = document.getElementById(e.target.classList[1]);
+  sec.scrollIntoView({ behavior: 'smooth' })
+  activeMenuItem[0].className = activeMenuItem[0].className.replace('menu__active', "");
+  e.target.className += ' menu__active';
 }
 // scroll to header on click top button 
-function topToHeader(){
- window.scrollTo({top:0,left:0,behavior:'smooth'});
+function topToHeader() {
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 }
