@@ -77,6 +77,14 @@ section {
   font-size:20px;
   font-weight: 900;
 }
+@media screen and (max-width: 600px){
+  .navbar__menu li {
+    display: block;
+  }
+  header{
+    overflow:hidden;
+  }
+}
 .navbar__menu li:hover,.menu__active{
   background:#3399ff;
 }
@@ -93,7 +101,7 @@ section {
   color: #fff;
   transition: ease 0.3s all;
 }
-.btn input{
+.btn {
   overflow: hidden;
   height:50px;
   width: 120px;
@@ -105,9 +113,7 @@ section {
   border-radius: 12px;
   border: none;
 }
-.add__btn input{
-  position: fixed;
-}
+
 /* Header Styles */
 .page__header {
   background: #fff;
@@ -141,6 +147,7 @@ section {
       max-width: 50em;
       padding: 4em;
   }
+
 }
 
 section:nth-of-type(even) .landing__container {

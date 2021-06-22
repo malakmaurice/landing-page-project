@@ -17,37 +17,21 @@
  * Define Global Variables
  * 
 */
-let sectionNumber = 4;
+let sectionNumber = 5;
 const addSectionButton = document.querySelector(".add__btn");
 const navbarList = document.querySelector("#navbar__list");
 let listItems = document.getElementsByClassName("item");
 const activeMenuItem = document.getElementsByClassName("item menu__active");
 const topButton = document.querySelector(".top__btn");
 let sections = document.querySelectorAll(".section");
-//flag for onscrell event
-let scrollinglag = false;
 /**
  * End Global Variables
- * Start Helper Functions
- *
-*/
-/**
- * End Helper Functions
- * Begin Main Functions
+ * 
  *
 */
 
-// build the nav
-
-
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
-
-
 /**
- * End Main Functions
+ * 
  * Begin Events
  *
 */
