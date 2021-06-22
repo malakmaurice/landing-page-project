@@ -6,3 +6,9 @@
 - Add a scroll to top button on the page that’s only visible when the user scrolls below the fold of the page.
 - Add an active state to the navigation items when a section is in the viewport.
 
+--- 
+
+## Tools 
+- HTML
+- CSS
+- Javascript 
