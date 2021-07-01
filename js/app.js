@@ -22,6 +22,7 @@ const addSectionButton = document.querySelector(".add__btn");
 const navbarList = document.querySelector("#navbar__list");
 let listItems = document.getElementsByClassName("item");
 const activeMenuItem = document.getElementsByClassName("item menu__active");
+const activeSection=document.querySelector(".your-active-class");
 const topButton = document.querySelector(".top__btn");
 let sections = document.querySelectorAll(".section");
 /**
@@ -44,6 +45,10 @@ onscroll = () => {
       const currentSectionID = section.getAttribute("id");
       activeMenuItem[0].className = activeMenuItem[0].className.replace('menu__active', "");
       document.querySelector(`.${currentSectionID}`).classList.add("menu__active");
+      //add active class to the viewed section
+      activeSection.className=activeSection.className.replace("your-active-class","");
+      section.className+=" your-active-class";
+
     }
   });
 }
